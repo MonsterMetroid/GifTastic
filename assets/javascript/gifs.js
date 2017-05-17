@@ -21,6 +21,7 @@ var gifApp={
 }
 gifApp.updateButtons();
 $("#buttonArea").on("click", "button", function(){
+	$("#gifArea").val(null);
 	gifApp.createURL($(this).attr("data"));
 	$.ajax({
 	url: queryUrl,
@@ -29,7 +30,7 @@ $("#buttonArea").on("click", "button", function(){
   var results = response.data;
   console.log(response.data);
   for (var i = 0; i < results.length; i++) {
-    var gifDiv = $("#gifArea").append($("<div class='item'>"));
+    var gifSpan = $("<span class='item'>");
 
     var rating = results[i].rating;
 
@@ -38,10 +39,11 @@ $("#buttonArea").on("click", "button", function(){
     var image = $("<img>");
     image.attr("src", results[i].images.fixed_width.url);
     
-    gifDiv.append(p);
-    gifDiv.append(image);
+    gifSpan.append(p);
+    gifSpan.append(image);
     
-    // $("#gifs-appear-here").prepend(gifDiv);
+    $("#gifArea").append(gifSpan);
+
   }
 });
 });
