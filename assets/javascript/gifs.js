@@ -21,7 +21,7 @@ var gifApp={
 }
 gifApp.updateButtons();
 $("#buttonArea").on("click", "button", function(){
-	$("#gifArea").val(null);
+	$("#gifArea").html(null);
 	gifApp.createURL($(this).attr("data"));
 	$.ajax({
 	url: queryUrl,
@@ -37,7 +37,7 @@ $("#buttonArea").on("click", "button", function(){
     var p = $("<p>").text("Rating: " + rating);
 
     var image = $("<img>");
-    image.attr("src", results[i].images.fixed_width.url);
+    image.attr("src", results[i].images.fixed_height.url);
     
     gifSpan.append(p);
     gifSpan.append(image);
